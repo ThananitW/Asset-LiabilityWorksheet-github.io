@@ -1,0 +1,251 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wc{font-family:'Sarabun',var(--font-sans);padding:1.5rem 0}
+.hero{background:#1D9E75;border-radius:16px;padding:20px 24px;margin-bottom:1.5rem;display:flex;align-items:center;gap:16px}
+.hero-icon{width:48px;height:48px;background:#E1F5EE;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;color:#085041;flex-shrink:0}
+.hero-title{font-size:18px;font-weight:600;color:#E1F5EE;line-height:1.3}
+.hero-sub{font-size:13px;color:#9FE1CB;margin-top:3px}
+.summary-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem}
+.stat-card{border-radius:12px;padding:12px 14px;text-align:center}
+.stat-card.sc-green{background:#E1F5EE}
+.stat-card.sc-amber{background:#FAEEDA}
+.stat-card.sc-gray{background:#F1EFE8}
+.stat-num{font-size:26px;font-weight:600}
+.sc-green .stat-num{color:#085041}
+.sc-amber .stat-num{color:#633806}
+.sc-gray .stat-num{color:#444441}
+.stat-lbl{font-size:11px;font-weight:500;margin-top:2px}
+.sc-green .stat-lbl{color:#0F6E56}
+.sc-amber .stat-lbl{color:#854F0B}
+.sc-gray .stat-lbl{color:#5F5E5A}
+.btn-row{display:flex;gap:8px;margin-bottom:1.5rem}
+.btn-print{padding:8px 16px;border-radius:8px;background:#1D9E75;border:none;color:#fff;font-size:13px;font-weight:500;cursor:pointer;font-family:'Sarabun',var(--font-sans);display:flex;align-items:center;gap:6px}
+.btn-print:hover{background:#0F6E56}
+.btn-reset{padding:8px 16px;border-radius:8px;background:#F1EFE8;border:none;color:#5F5E5A;font-size:13px;font-weight:500;cursor:pointer;font-family:'Sarabun',var(--font-sans);display:flex;align-items:center;gap:6px}
+.btn-reset:hover{background:#D3D1C7}
+.pbar-wrap{background:#F1EFE8;border-radius:99px;height:8px;margin-bottom:4px;overflow:hidden}
+.pbar{height:8px;background:#1D9E75;border-radius:99px;transition:width .4s}
+.pbar-lbl{font-size:12px;color:#5F5E5A;text-align:right;margin-bottom:1.25rem}
+.section{border-radius:14px;margin-bottom:10px;overflow:hidden;border:1px solid}
+.s-green{border-color:#9FE1CB}
+.s-blue{border-color:#B5D4F4}
+.s-purple{border-color:#CECBF6}
+.s-amber{border-color:#FAC775}
+.s-coral{border-color:#F5C4B3}
+.s-pink{border-color:#F4C0D1}
+.s-teal{border-color:#9FE1CB}
+.s-red{border-color:#F7C1C1}
+.sec-hdr{padding:13px 16px;cursor:pointer;display:flex;align-items:center;gap:10px;user-select:none}
+.s-green .sec-hdr{background:#E1F5EE}
+.s-blue .sec-hdr{background:#E6F1FB}
+.s-purple .sec-hdr{background:#EEEDFE}
+.s-amber .sec-hdr{background:#FAEEDA}
+.s-coral .sec-hdr{background:#FAECE7}
+.s-pink .sec-hdr{background:#FBEAF0}
+.s-teal .sec-hdr{background:#E1F5EE}
+.s-red .sec-hdr{background:#FCEBEB}
+.sec-hdr:hover{filter:brightness(0.97)}
+.sec-ic{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.s-green .sec-ic{background:#9FE1CB;color:#085041}
+.s-blue .sec-ic{background:#B5D4F4;color:#0C447C}
+.s-purple .sec-ic{background:#CECBF6;color:#3C3489}
+.s-amber .sec-ic{background:#FAC775;color:#633806}
+.s-coral .sec-ic{background:#F5C4B3;color:#712B13}
+.s-pink .sec-ic{background:#F4C0D1;color:#72243E}
+.s-teal .sec-ic{background:#9FE1CB;color:#085041}
+.s-red .sec-ic{background:#F7C1C1;color:#791F1F}
+.sec-title{font-size:15px;font-weight:600;flex:1}
+.s-green .sec-title{color:#085041}
+.s-blue .sec-title{color:#0C447C}
+.s-purple .sec-title{color:#3C3489}
+.s-amber .sec-title{color:#633806}
+.s-coral .sec-title{color:#712B13}
+.s-pink .sec-title{color:#72243E}
+.s-teal .sec-title{color:#085041}
+.s-red .sec-title{color:#791F1F}
+.sec-badge{font-size:11px;font-weight:600;border-radius:99px;padding:3px 10px}
+.s-green .sec-badge{background:#9FE1CB;color:#085041}
+.s-blue .sec-badge{background:#B5D4F4;color:#0C447C}
+.s-purple .sec-badge{background:#CECBF6;color:#3C3489}
+.s-amber .sec-badge{background:#FAC775;color:#633806}
+.s-coral .sec-badge{background:#F5C4B3;color:#712B13}
+.s-pink .sec-badge{background:#F4C0D1;color:#72243E}
+.s-teal .sec-badge{background:#9FE1CB;color:#085041}
+.s-red .sec-badge{background:#F7C1C1;color:#791F1F}
+.sec-chevron{font-size:16px;color:var(--color-text-tertiary);transition:transform .2s}
+.sec-chevron.open{transform:rotate(180deg)}
+.sec-body{display:none;background:var(--color-background-primary);padding:0 16px 10px}
+.sec-body.open{display:block}
+.item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.item:last-child{border-bottom:none}
+.item label{display:flex;align-items:flex-start;gap:10px;cursor:pointer;width:100%}
+.item input[type=checkbox]{width:17px;height:17px;min-width:17px;margin-top:2px;cursor:pointer;accent-color:#1D9E75}
+.it-title{font-size:14px;color:var(--color-text-primary);font-weight:500;line-height:1.4}
+.it-hint{font-size:12px;color:var(--color-text-secondary);margin-top:3px;line-height:1.5}
+.tag-warn{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:500;color:#633806;background:#FAEEDA;border-radius:6px;padding:3px 8px;margin-top:5px}
+.tag-danger{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:500;color:#791F1F;background:#FCEBEB;border-radius:6px;padding:3px 8px;margin-top:5px}
+.note-btn{font-size:11px;color:var(--color-text-tertiary);border:none;background:none;cursor:pointer;padding:0;margin-top:5px;font-family:'Sarabun',var(--font-sans);display:flex;align-items:center;gap:4px}
+.note-btn:hover{color:var(--color-text-secondary)}
+.note-field{width:100%;margin-top:6px;font-size:12px;padding:7px 10px;border:0.5px solid var(--color-border-secondary);border-radius:8px;background:var(--color-background-secondary);color:var(--color-text-primary);resize:vertical;min-height:50px;display:none;font-family:'Sarabun',var(--font-sans)}
+.note-field.open{display:block}
+.checked-item .it-title{text-decoration:line-through;color:var(--color-text-tertiary);font-weight:400}
+</style>
+
+<h2 class="sr-only">แบบสอบถามสำรวจทรัพย์สินและหนี้สินเพื่อจัดทำพินัยกรรม</h2>
+<div class="wc">
+  <div class="hero">
+    <div class="hero-icon"><i class="ti ti-file-certificate" aria-hidden="true"></i></div>
+    <div>
+      <div class="hero-title">แบบสำรวจทรัพย์สิน &amp; หนี้สิน</div>
+      <div class="hero-sub">เพื่อจัดทำพินัยกรรม — ทำเครื่องหมายรายการที่มีและบันทึกรายละเอียด</div>
+    </div>
+  </div>
+
+  <div class="pbar-wrap"><div class="pbar" id="pbar" style="width:0%"></div></div>
+  <div class="pbar-lbl" id="pct-lbl">0% ของรายการทั้งหมด</div>
+
+  <div class="summary-row">
+    <div class="stat-card sc-green"><div class="stat-num" id="cnt-chk">0</div><div class="stat-lbl"><i class="ti ti-check" aria-hidden="true"></i> รายการที่มี</div></div>
+    <div class="stat-card sc-amber"><div class="stat-num" id="cnt-warn">0</div><div class="stat-lbl"><i class="ti ti-alert-triangle" aria-hidden="true"></i> แจ้งเตือน</div></div>
+    <div class="stat-card sc-gray"><div class="stat-num" id="cnt-tot">0</div><div class="stat-lbl"><i class="ti ti-list" aria-hidden="true"></i> ทั้งหมด</div></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-print" onclick="window.print()"><i class="ti ti-printer" aria-hidden="true"></i> พิมพ์รายการ</button>
+    <button class="btn-reset" onclick="resetAll()"><i class="ti ti-refresh" aria-hidden="true"></i> รีเซ็ต</button>
+  </div>
+
+  <div id="sec-wrap"></div>
+</div>
+
+<script>
+const SECTIONS=[
+{id:"s1",col:"s-green",icon:"ti-building",title:"อสังหาริมทรัพย์",items:[
+{id:"a1",t:"บ้านพักอาศัย / ทาวน์โฮม",h:"โฉนด (น.ส.4จ.) เลขโฉนด เล่ม หน้า — ตรวจว่าติดจำนองธนาคารหรือไม่"},
+{id:"a2",t:"คอนโดมิเนียม",h:"หนังสือกรรมสิทธิ์ห้องชุด (อ.ช.2) ชื่อโครงการ ห้องเลขที่"},
+{id:"a3",t:"ที่ดินเปล่า",h:"โฉนด น.ส.4 หรือ น.ส.3 — ระบุตำบล อำเภอ จังหวัด"},
+{id:"a4",t:"ที่นา / ที่ไร่ / ที่สวน",h:"น.ส.3, น.ส.3ก หรือ ส.ป.ก.4-01",w:"ที่ ส.ป.ก. มีข้อจำกัดการโอน ต้องตรวจสอบกับ ส.ป.ก.จังหวัดก่อน"},
+{id:"a5",t:"สวนยาง / สวนปาล์ม / ไร่อ้อย",h:"เอกสารสิทธิ์ที่ดิน — ต้นไม้ถือเป็นส่วนหนึ่งของทรัพย์ด้วย"},
+{id:"a6",t:"ห้องเช่า / อพาร์ตเมนต์ให้เช่า",h:"โฉนด + สัญญาเช่าทุกฉบับ รายได้ค่าเช่าตกทอดแก่ทายาท"},
+{id:"a7",t:"ที่ดินมือเปล่า (ไม่มีเอกสารสิทธิ์)",h:"ใบ ภ.บ.ท.5 หรือ ภ.บ.ท.11 — โอนผ่านทะเบียนไม่ได้ทันที ต้องระบุในพินัยกรรมให้ชัด"},
+{id:"a8",t:"อาคารพาณิชย์ / ร้านค้า",h:"โฉนด สัญญาเช่า (ถ้าให้คนอื่นเช่า)"},
+{id:"a9",t:"โกดัง / คลังสินค้า",h:"โฉนด หรือสัญญาเช่าระยะยาว (ถ้าเช่าและมีสิทธิ์อาศัย)"}
+]},
+{id:"s2",col:"s-blue",icon:"ti-car",title:"ยานพาหนะ",items:[
+{id:"b1",t:"รถยนต์",h:"เล่มทะเบียน ป้ายทะเบียน — ตรวจว่ายังผ่อนกับไฟแนนซ์อยู่หรือไม่"},
+{id:"b2",t:"รถจักรยานยนต์",h:"เล่มทะเบียน — มีหลายคันให้ระบุแยกทุกคัน"},
+{id:"b3",t:"รถกระบะ / รถบรรทุก",h:"เล่มทะเบียน — ถ้าใช้ในธุรกิจตรวจว่าเป็นทรัพย์ส่วนตัวหรือของห้างหุ้นส่วน"},
+{id:"b4",t:"รถแทรกเตอร์ / รถไถนา / รถเกี่ยวข้าว",h:"ใบทะเบียนเครื่องจักรกลการเกษตร"},
+{id:"b5",t:"เรือ / เรือหางยาว",h:"ใบอนุญาตใช้เรือ หรือทะเบียนเรือ (ถ้าจดทะเบียน)"},
+{id:"b6",t:"ยานพาหนะอื่น (ATV, รถกอล์ฟ ฯลฯ)",h:"เอกสารซื้อขาย — ระบุให้ชัดแม้ไม่มีทะเบียน"}
+]},
+{id:"s3",col:"s-purple",icon:"ti-building-bank",title:"ทรัพย์สินทางการเงิน",items:[
+{id:"c1",t:"บัญชีเงินฝากธนาคาร (ออมทรัพย์ / กระแสรายวัน)",h:"ทุกธนาคาร ทุกสาขา รวมบัญชีที่แทบไม่ได้ใช้"},
+{id:"c2",t:"บัญชีเงินฝากประจำ (Fixed Deposit)",h:"ใบรับฝากเงิน วันครบกำหนด ดอกเบี้ย"},
+{id:"c3",t:"บัญชีเงินฝากสหกรณ์",h:"สมุดบัญชีสหกรณ์ — แยกออกจากหนี้สหกรณ์",w:"บัญชีเงินฝากและหุ้นสหกรณ์คือทรัพย์สิน ส่วนหนี้สหกรณ์คือหนี้สิน — ต้องแยกบัญชีให้ชัด"},
+{id:"c4",t:"หุ้นสามัญในตลาดหลักทรัพย์ (SET/MAI)",h:"บัญชีซื้อขาย (port) บริษัทหลักทรัพย์ statement ล่าสุด"},
+{id:"c5",t:"กองทุนรวม (Mutual Fund)",h:"บัญชีกองทุน ใบแจ้งยอด NAV"},
+{id:"c6",t:"กองทุน LTF / RMF / SSF",h:"หนังสือยืนยัน ชื่อกองทุน หน่วยลงทุนคงเหลือ"},
+{id:"c7",t:"พันธบัตรรัฐบาล / หุ้นกู้",h:"ใบพันธบัตร หรือหนังสือยืนยัน วันครบอายุ"},
+{id:"c8",t:"ประกันชีวิต",h:"กรมธรรม์ทุกฉบับ",w:"ระบุผู้รับประโยชน์ในกรมธรรม์โดยตรง ไม่เช่นนั้นเงินตกเป็นกองมรดก"},
+{id:"c9",t:"กองทุนสำรองเลี้ยงชีพ / กบข.",h:"แจ้งนายจ้างหรือ กบข. แยกต่างหาก ไม่ผ่านพินัยกรรม"},
+{id:"c10",t:"Cryptocurrency (Bitcoin, Ethereum ฯลฯ)",h:"Wallet address เท่านั้น — ห้ามเขียน Seed Phrase ในพินัยกรรม",d:"Seed Phrase ต้องเก็บแยกจากพินัยกรรม เพราะพินัยกรรมอาจถูกเปิดเผยในชั้นศาล"},
+{id:"c11",t:"เงินใน PromptPay / e-Wallet",h:"ผูกกับบัญชีธนาคารใด — แจ้งทายาทให้ทราบ"}
+]},
+{id:"s4",col:"s-amber",icon:"ti-diamond",title:"ทรัพย์สินมีค่าและของสะสม",items:[
+{id:"d1",t:"ทองรูปพรรณ / ทองแท่ง",h:"น้ำหนัก ใบรับประกันร้านทอง เก็บที่ไหน"},
+{id:"d2",t:"ทองที่ติดตั๋วจำนำ",h:"ตั๋วจำนำ วันครบกำหนด ยอดจำนำ + ดอกเบี้ยสะสม",d:"ทายาทต้องรู้วันครบกำหนด — โรงรับจำนำจะขายทอดตลาดทันทีเมื่อครบกำหนด"},
+{id:"d3",t:"เพชร / อัญมณี / นาฬิกาแบรนด์เนม",h:"ใบประเมิน ใบรับประกัน ใบเสร็จ เก็บที่ไหน"},
+{id:"d4",t:"พระเครื่อง",h:"ทำบัญชีรายการพร้อมรูปถ่ายทุกองค์ ระบุชื่อ/รุ่น/วัด/ปีสร้าง/มูลค่าประมาณ",w:"พระเครื่องพิสูจน์ตัวตนยาก ถ้าไม่มีบัญชีรายการ ทายาทอาจเกิดข้อพิพาทกัน"},
+{id:"d5",t:"เหรียญโบราณ / ของสะสมหายาก",h:"รายการ รูปถ่าย มูลค่าประเมิน"},
+{id:"d6",t:"งานศิลปะ / ภาพวาด",h:"ชื่อศิลปิน ปีสร้าง ใบรับรองความแท้"},
+{id:"d7",t:"เครื่องดนตรี / อุปกรณ์มีมูลค่า",h:"ยี่ห้อ รุ่น ซีเรียลนัมเบอร์ (ถ้ามี)"}
+]},
+{id:"s5",col:"s-coral",icon:"ti-briefcase",title:"ทรัพย์สินทางธุรกิจ",items:[
+{id:"e1",t:"หุ้นในบริษัทจำกัด",h:"สัดส่วนหุ้น (%) ชื่อบริษัท เลขทะเบียนนิติบุคคล — ตรวจที่ DBD",w:"ตรวจข้อบังคับบริษัทว่ามีข้อจำกัดการโอนหุ้นให้ทายาทหรือไม่"},
+{id:"e2",t:"หุ้นส่วนในห้างหุ้นส่วนจำกัด",h:"สัดส่วน ชื่อห้าง เลขทะเบียน"},
+{id:"e3",t:"กิจการเจ้าของคนเดียว (ร้านค้า, ร้านอาหาร ฯลฯ)",h:"ทรัพย์สินกิจการอาจปนกับส่วนตัว ต้องแยกรายการให้ชัด"},
+{id:"e4",t:"ทรัพย์สินทางปัญญา (ลิขสิทธิ์, สิทธิบัตร, เครื่องหมายการค้า)",h:"เลขทะเบียน วันหมดอายุ (ถ้ามี)"},
+{id:"e5",t:"สิทธิ์แฟรนไชส์",h:"สัญญาแฟรนไชส์ — ตรวจว่าโอนให้ทายาทได้หรือไม่"}
+]},
+{id:"s6",col:"s-pink",icon:"ti-device-mobile",title:"ทรัพย์สินดิจิทัลและสิทธิ์อื่น",items:[
+{id:"f1",t:"บัญชี Social Media / Channel ที่สร้างรายได้",h:"ชื่อบัญชี รายได้โดยประมาณ วิธีเข้าถึง (อย่าเขียน password ในพินัยกรรม)"},
+{id:"f2",t:"Domain name / เว็บไซต์",h:"ชื่อโดเมน ผู้ให้บริการ วันหมดอายุ"},
+{id:"f3",t:"สิทธิ์เช่าระยะยาว (Leasehold) ที่ยังไม่หมดอายุ",h:"สัญญาเช่า ระยะเวลาเช่าที่เหลือ — ตรวจว่าโอนสิทธิ์ได้หรือไม่"},
+{id:"f4",t:"เงินมัดจำ / เงินประกัน (บ้านเช่า, ร้านค้า)",h:"สัญญาเช่า จำนวนเงินมัดจำ — เป็นสิทธิ์เรียกคืนที่ตกทอด"},
+{id:"f5",t:"เงินค่าเช่าค้างรับ",h:"ใครค้างชำระ จำนวนเงิน"}
+]},
+{id:"s7",col:"s-teal",icon:"ti-cash",title:"สิทธิเรียกร้อง (เงินที่คนอื่นค้าง)",items:[
+{id:"g1",t:"เงินที่ให้ญาติ / เพื่อนกู้ยืม",h:"มีสัญญากู้หรือไม่ จำนวนเงิน ผู้กู้ชื่อ"},
+{id:"g2",t:"เงินค้างรับจากการขายที่ดิน / บ้าน",h:"สัญญาจะซื้อจะขาย ยอดที่ยังไม่ได้รับ"},
+{id:"g3",t:"คดีความที่อยู่ระหว่างฟ้อง / เรียกค่าเสียหาย",h:"คดีหมายเลข ศาลที่ฟ้อง ทนายความที่รับผิดชอบ"},
+{id:"g4",t:"เงินประกันสังคม (กรณีชราภาพ) ที่ยังไม่ได้รับ",h:"ตรวจสอบสิทธิ์กับสำนักงานประกันสังคม"}
+]},
+{id:"s8",col:"s-red",icon:"ti-alert-circle",title:"หนี้สินและภาระผูกพัน",items:[
+{id:"h1",t:"จำนองบ้าน / ที่ดินกับธนาคาร",h:"ชื่อธนาคาร ยอดเงินกู้คงเหลือ ดอกเบี้ยต่อปี สัญญาเลขที่",w:"ทายาทต้องผ่อนต่อ หรือขายทรัพย์ชำระหนี้ก่อน"},
+{id:"h2",t:"ผ่อนรถ (Hire Purchase / Leasing)",h:"ชื่อไฟแนนซ์ ยอดคงเหลือ จำนวนงวดที่เหลือ",w:"ทายาทที่รับรถต้องรับภาระผ่อนต่อ"},
+{id:"h3",t:"หนี้สหกรณ์ออมทรัพย์",h:"ชื่อสหกรณ์ ยอดคงเหลือ มีผู้ค้ำประกันหรือไม่",d:"ถ้ามีผู้ค้ำ ผู้ค้ำอาจต้องรับผิดแทน — ต้องแจ้งผู้ค้ำให้รู้ตัว"},
+{id:"h4",t:"หนี้ ธ.ก.ส. / สหกรณ์การเกษตร",h:"ยอดคงเหลือ หลักประกัน (ถ้าใช้ที่ดินค้ำ)",w:"ตรวจว่าใช้ที่นาหรือที่ไร่ค้ำประกันหนี้ไว้หรือไม่"},
+{id:"h5",t:"ทองที่ติดตั๋วจำนำ (ฝั่งหนี้)",h:"ตั๋วจำนำ วันครบกำหนด ยอดจำนำ + ดอกเบี้ย",d:"ทายาทต้องรู้วันครบกำหนด มิเช่นนั้นโรงรับจำนำขายทันที"},
+{id:"h6",t:"บัตรเครดิต",h:"ทุกใบ ยอดค้างชำระ ชื่อธนาคาร"},
+{id:"h7",t:"สินเชื่อส่วนบุคคล (Personal Loan)",h:"ชื่อผู้ให้กู้ ยอดคงเหลือ อัตราดอกเบี้ย"},
+{id:"h8",t:"หนี้นอกระบบ",h:"จำนวน เจ้าหนี้ (ถ้าเปิดเผยได้) — ต้องระบุเพื่อป้องกันทายาทถูกทวงหนี้โดยไม่รู้เรื่อง"},
+{id:"h9",t:"ภาษีที่ดินและสิ่งปลูกสร้างค้างชำระ",h:"ใบแจ้งประเมิน ยอดค้าง ปีที่ค้าง"},
+{id:"h10",t:"ค่าส่วนกลางคอนโด / หมู่บ้านค้างชำระ",h:"ยอดค้าง ชื่อนิติบุคคล"},
+{id:"h11",t:"การค้ำประกันหนี้ให้บุคคลอื่น",h:"คุณเป็นผู้ค้ำของใคร วงเงิน สถาบันการเงิน",d:"ภาระค้ำประกันอาจตกทอดถึงกองมรดก ต้องระบุให้ชัดในพินัยกรรม"}
+]}
+];
+
+const wrap=document.getElementById('sec-wrap');
+SECTIONS.forEach(s=>{
+  const div=document.createElement('div');
+  div.className='section '+s.col;
+  const items=s.items.map(it=>{
+    let tags='';
+    if(it.w)tags+=`<span class="tag-warn"><i class="ti ti-alert-triangle" style="font-size:12px" aria-hidden="true"></i>${it.w}</span><br>`;
+    if(it.d)tags+=`<span class="tag-danger"><i class="ti ti-flame" style="font-size:12px" aria-hidden="true"></i>${it.d}</span><br>`;
+    return`<div class="item" id="row-${it.id}"><label><input type="checkbox" id="${it.id}" onchange="onChk(this)"><div style="flex:1"><div class="it-title">${it.t}</div><div class="it-hint">${it.h}</div>${tags}<button class="note-btn" id="nb-${it.id}" onclick="toggleNote('${it.id}')"><i class="ti ti-pencil" style="font-size:12px" aria-hidden="true"></i>เพิ่มหมายเหตุ</button><textarea class="note-field" id="nf-${it.id}" placeholder="รายละเอียด เช่น เลขโฉนด, ยอดเงิน, ผู้เกี่ยวข้อง..."></textarea></div></label></div>`;
+  }).join('');
+  div.innerHTML=`<div class="sec-hdr" onclick="toggle('${s.id}')"><div class="sec-ic"><i class="ti ${s.icon}" aria-hidden="true"></i></div><span class="sec-title">${s.title}</span><span class="sec-badge" id="bd-${s.id}">0/${s.items.length}</span><i class="ti ti-chevron-down sec-chevron" id="cv-${s.id}" aria-hidden="true"></i></div><div class="sec-body" id="sb-${s.id}">${items}</div>`;
+  wrap.appendChild(div);
+});
+
+function toggle(id){
+  const b=document.getElementById('sb-'+id),c=document.getElementById('cv-'+id);
+  b.classList.toggle('open');c.classList.toggle('open');
+}
+function toggleNote(id){
+  const f=document.getElementById('nf-'+id),b=document.getElementById('nb-'+id);
+  const o=f.classList.toggle('open');
+  b.innerHTML=`<i class="ti ti-pencil" style="font-size:12px" aria-hidden="true"></i>${o?'ซ่อนหมายเหตุ':'เพิ่มหมายเหตุ'}`;
+}
+function onChk(cb){
+  document.getElementById('row-'+cb.id).classList.toggle('checked-item',cb.checked);
+  updateStats();
+}
+function updateStats(){
+  let chk=0,warn=0,tot=0;
+  document.querySelectorAll('.item input[type=checkbox]').forEach(cb=>{
+    tot++;
+    if(cb.checked){
+      chk++;
+      const row=document.getElementById('row-'+cb.id);
+      if(row.querySelector('.tag-warn,.tag-danger'))warn++;
+    }
+  });
+  document.getElementById('cnt-chk').textContent=chk;
+  document.getElementById('cnt-warn').textContent=warn;
+  document.getElementById('cnt-tot').textContent=tot;
+  const pct=tot>0?Math.round(chk/tot*100):0;
+  document.getElementById('pbar').style.width=pct+'%';
+  document.getElementById('pct-lbl').textContent=pct+'% ของรายการทั้งหมด';
+  SECTIONS.forEach(s=>{
+    let sc=0;
+    s.items.forEach(it=>{const cb=document.getElementById(it.id);if(cb&&cb.checked)sc++;});
+    document.getElementById('bd-'+s.id).textContent=sc+'/'+s.items.length;
+  });
+}
+updateStats();
+</script>
